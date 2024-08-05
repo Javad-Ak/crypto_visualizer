@@ -18,3 +18,10 @@ def get_overview():
     response = requests.get(url='https://api.coingecko.com/api/v3/global', headers={'Accept': 'application/json'})
     response.raise_for_status()
     return response.json()['data']
+
+
+def search_coins(query):
+    response = requests.get(url='https://api.coingecko.com/api/v3/search', headers={'Accept': 'application/json'},
+                            params={'query': query})
+    response.raise_for_status()
+    return response.json()['coins'][:10]

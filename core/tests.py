@@ -9,5 +9,8 @@ class CoreTestCase(TestCase):
 
     def test_overview(self):
         data = requests.get_overview()
-        print(data)
+        assert len(data) > 0
+
+    def test_search(self):
+        data = requests.search_coins('bit')
         assert len(data) > 0
