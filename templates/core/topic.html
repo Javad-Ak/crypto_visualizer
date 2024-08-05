@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+    <h2>Topic: {{ topic.text }}</h2>
+    <h5>Added by <a href="{% url 'accounts:profile' topic.owner.id %}">{{ topic.owner.username }}</a>
+        on {{ topic.date_added|date:'M d, Y H:i' }}</h5>
+{% endblock header %}
+
+{% block content %}
+    {% if user == topic.owner %}
+        <div class="d-flex gap-2">
+            <form action="{% url 'logs:topic' topic.id %}" method='post'>
+                {% csrf_token %}
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-outline-primary" name="submit">Delete topic</button>
+            </form>
+            <form action="{% url 'logs:new_entry' topic.id %}" method='get'>
+                <button class="btn btn-outline-primary" name="submit">Add entry</button>
+            </form>
+        </div>
+    {% endif %}
+
+    <h3 class="my-2">Entries:</h3>
+    <ul class="list-group">
+        {% for entry in entries %}
+            <li class="list-group-item">
+                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+                <p>{{ entry.text|linebreaks }}</p>
+                {% if user == topic.owner %}
+                    <p><a href="{% url 'logs:edit_entry' entry.id %}">Edit entry</a></p>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="list-group-item">There are no entries for this topic yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
