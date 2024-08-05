@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Learning Logs</title>
+    <title>Crypto Visualizer</title>
 
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
@@ -20,8 +20,8 @@
 <body>
 <nav class="navbar navbar-expand-md mb-4 border">
     <div class="container-fluid">
-        <a class="navbar-brand border rounded-5 px-2" href="{% url 'logs:index' %}">
-            Learning Log
+        <a class="navbar-brand border rounded-5 px-2" href="{% url '###' %}">
+            Crypto Visualizer
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,8 +34,13 @@
             <!-- Left side of navbar -->
             <ul class="navbar-nav me-auto gap-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logs:topics' %}">
-                        Topics
+                    <a class="nav-link" href="{% url '###' %}">
+                        Overview
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url '###' %}">
+                        Price
                     </a>
                 </li>
                 <li class="nav-item">
@@ -58,32 +63,6 @@
                         <i class="bi bi-circle-half"></i>
                     </button>
                 </li>
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <form action="{% url 'accounts:profile' user.id %}" method="get">
-                            <button name="submit" class="btn border-0">
-                                {% if user.profile and user.profile.avatar %}
-                                    <img src="{{ user.profile.avatar.url }}" class="avatar"
-                                         alt="Avatar" loading="lazy">
-                                {% else %}
-                                    <img src="{% static 'avatar.png' %}" class="avatar"
-                                         alt="Avatar" loading="lazy">
-                                {% endif %}
-                            </button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <form action="{% url 'accounts:register' %}" method='get'>
-                            {% bootstrap_button button_type="submit" content="Register" %}
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form action="{% url 'accounts:login' %}" method='get'>
-                            {% bootstrap_button button_type="submit" content="Log in" %}
-                        </form>
-                    </li>
-                {% endif %}
             </ul>
         </div>
 
@@ -101,13 +80,13 @@
 </main>
 
 <script>
-    // On page load, check localStorage for theme preference
+    // check localStorage for theme preference on page loading
     document.addEventListener('DOMContentLoaded', function () {
         const storedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-bs-theme', storedTheme)
     });
 
-    // Toggle theme on button click and save preference to localStorage
+    // change theme on click and save preference to localStorage
     document.getElementById('theme').addEventListener('click', function () {
         const currentTheme = document.documentElement.getAttribute('data-bs-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
