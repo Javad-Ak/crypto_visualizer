@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-expand-md mb-4 border">
     <div class="container-fluid">
-        <a class="navbar-brand border rounded-5 px-2" href="{% url '###' %}">
+        <a class="navbar-brand border rounded-5 px-2" href="{% url 'core:index' %}">
             Crypto Visualizer
         </a>
 
@@ -34,12 +34,12 @@
             <!-- Left side of navbar -->
             <ul class="navbar-nav me-auto gap-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url '###' %}">
+                    <a class="nav-link" href="{% url 'core:overview' %}">
                         Overview
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url '###' %}">
+                    <a class="nav-link" href="{% url 'core:prices' %}">
                         Price
                     </a>
                 </li>
@@ -95,7 +95,7 @@
     });
 
     // search action
-    const url = 'http://' + window.location.host + '/search/###/';
+    const url = window.location.protocol + '//' + window.location.host + '/search/###/';
     document.getElementById('search').addEventListener('click', function () {
         const query = document.getElementById('searchBox').value;
         if (query != null && query.length > 0) {
