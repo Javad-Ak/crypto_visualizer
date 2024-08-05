@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
 
-</body>
-</html>
+{% block header %}
+    <h2>Cryptocurrency Market Overview:</h2>
+{% endblock header %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            {% for k in data.keys %}
+                <td>{{ k }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for v in data.values %}
+                <td>{{ v }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    {{ fig|safe }}
+{% endblock content %}
