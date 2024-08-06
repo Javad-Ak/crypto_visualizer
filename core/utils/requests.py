@@ -3,7 +3,7 @@ import requests
 
 def get_coins(per_page=8, page=1, order='market_cap', desc=True):
     if (per_page > 100 or per_page < 1 or order not in
-            ['name', 'market_cap', 'price_change_percentage_24h', 'trade_volume_24h_btc']):
+            ['name', 'market_cap', 'price_change_percentage_24h', 'volume']):
         raise ValueError('Invalid parameters')
 
     order = order + '_desc' if desc else order + "_asc"

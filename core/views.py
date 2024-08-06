@@ -8,25 +8,18 @@ def index(request):
 
 
 def overview(request):
-    data = requests.get_overview()
-    cap = dict(data['market_cap_percentage'])
-    del data['total_market_cap']
-    del data['updated_at']
-    del data['market_cap_percentage']
-    del data['total_volume']
-
-    others = 100.0
-    for t in cap.values():
-        others -= float(t)
-    cap['others'] = others
-    fig = figures.create_pie(names=cap.keys(), values=cap.values(), title="Market Cap")
-
-    return render(request, 'core/overview.html', context={'data': data, 'fig': fig.to_html(full_html=False)})
+    data, fig = figures.market_overview()
+    return render(request, 'core/overview.html',
+                  context={'data': data, 'fig': fig.to_html(full_html=False, config={'displayModeBar': False})})
 
 
 def prices(request):
-    return render(request, 'core/prices.html')
+    page = request.GET.get('page', 1)
+    data = figures.price_overview(page=page)
+    context = {'data': data[0], 'figs': data[:1]}
+    return render(request, 'core/prices.html', context=context)
 
 
 def search(request, query):
-    return render(request, 'core/search.html')
+    data = requests.search_coins(query)
+    return render(request, 'core/search.html', context={'data': data})
