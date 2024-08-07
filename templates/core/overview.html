@@ -6,31 +6,19 @@
 {% endblock header %}
 
 {% block content %}
-    <table class="table">
-        <tr>
-            {% for k in data.keys %}
-                <td>{{ k }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            {% for v in data.values %}
-                <td>{{ v }}</td>
-            {% endfor %}
-        </tr>
-    </table>
-    {{ fig|safe }}
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                Column
-            </div>
-            <div class="col">
-                Column
-            </div>
-            <div class="col">
-                Column
-            </div>
-        </div>
+    <div class="container-lg">
+        <table class="table">
+            <tr>
+                {% for k in data.keys %}
+                    <td>{{ k }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for v in data.values %}
+                    <td>{{ v }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+        {{ fig|safe }}
     </div>
 {% endblock content %}

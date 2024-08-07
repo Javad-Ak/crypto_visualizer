@@ -10,13 +10,15 @@ def index(request):
 def overview(request):
     data, fig = figures.market_overview()
     return render(request, 'core/overview.html',
-                  context={'data': data, 'fig': fig.to_html(full_html=False, config={'displayModeBar': False})})
+                  context={'data': data, 'fig': fig.to_html(full_html=False, include_plotlyjs=False,
+                                                            config={'displayModeBar': False})})
 
 
 def prices(request):
-    page = request.GET.get('page', 1)
-    data = figures.price_overview(page=page)
-    context = {'data': data[0], 'figs': data[:1]}
+    data = figures.price_overview()
+    context = {'data': data[0],
+               'figs': [f.to_html(full_html=False, include_plotlyjs=False,
+                                  config={'displayModeBar': False}) for f in data[1:]]}
     return render(request, 'core/prices.html', context=context)
 
 

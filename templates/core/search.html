@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
 
-</body>
-</html>
+{% block header %}
+    <h2>Search Results:</h2>
+{% endblock header %}
+
+{% block content %}
+    <div class="container-lg">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">logo</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Market Cap Rank</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for coin in data %}
+                <tr>
+                    <td><img width="32" src="{{ coin.large }}" alt="thumb" loading="lazy"></td>
+                    <td>{{ coin.symbol }}</td>
+                    <td>{{ coin.id|capfirst }}</td>
+                    <td>{{ coin.market_cap_rank }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

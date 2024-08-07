@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('overview/', views.overview, name='overview'),
 
-    path('prices', views.prices, name='prices'),
+    path('prices/', views.prices, name='prices'),
 
     path('search/<str:query>/', views.search, name='search'),
 ]

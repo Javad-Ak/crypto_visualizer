@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
 
-</body>
-</html>
+{% block header %}
+    <h2>Cryptocurrency Prices:</h2>
+{% endblock header %}
+
+{% block content %}
+    <div class="container-lg">
+        {% for fig in figs %}
+            {{ fig|safe }}
+        {% endfor %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">logo</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price(USD)</th>
+                <th scope="col">Percent Change 24h</th>
+                <th scope="col">Volume</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for coin in data %}
+                <tr>
+                    <td><img width="32" src="{{ coin.image }}" alt="thumb" loading="lazy"></td>
+                    <td>{{ coin.symbol }}</td>
+                    <td>{{ coin.id|capfirst }}</td>
+                    <td>{{ coin.current_price }}</td>
+                    <td>{{ coin.price_change_percentage_24h }}</td>
+                    <td>{{ coin.total_volume }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

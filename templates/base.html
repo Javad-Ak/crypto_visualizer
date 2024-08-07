@@ -12,9 +12,8 @@
 
     <link rel="stylesheet" href=
             "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css"
-          rel="stylesheet" integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+
+    <script src="https://cdn.plot.ly/plotly-2.34.0.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -80,13 +79,13 @@
 </main>
 
 <script>
-    // check localStorage for theme preference on page loading
+    // On page load, check localStorage for theme preference
     document.addEventListener('DOMContentLoaded', function () {
         const storedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-bs-theme', storedTheme)
     });
 
-    // change theme on click and save preference to localStorage
+    // Toggle theme on button click and save preference to localStorage
     document.getElementById('theme').addEventListener('click', function () {
         const currentTheme = document.documentElement.getAttribute('data-bs-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
