@@ -16,11 +16,14 @@ It uses Coingecko public API to get real-time data.
 
 ## Installation
 
-To run the project, simply install packages in requirements.txt:
+To run the project, simply install packages in requirements.txt in your active venv:
 
-```Pip install -r requirements.txt```
+```pip install -r requirements.txt```
 
-Then run the project using django commands.
+Then run the project using django commands:
+
+```python manage.py runserver```
+
 Notice that The server is running localhost and DEBUG is True.
 
 ## Features
